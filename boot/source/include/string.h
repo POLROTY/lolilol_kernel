@@ -1,8 +1,8 @@
 #ifndef STRING_H
-#define STRING_H
+# define STRING_H
 
-#include "stdint.h"   /* brings in size_t */
+# include "stdint.h"
 
-size_t strlen(const char *s);
+size_t	strlen(const char *s);
 
-#endif /* STRING_H */
+#endif

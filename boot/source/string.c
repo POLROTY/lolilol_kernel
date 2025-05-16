@@ -1,9 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   string.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rpol <marvin@42.fr>                        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/17 01:45:35 by rpol              #+#    #+#             */
+/*   Updated: 2025/05/17 01:45:48 by rpol             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "include/stdint.h"
 #include "include/string.h"
 
-size_t strlen(const char *s)
+size_t	ft_strlen(const char *s)
 {
-    size_t n = 0;
-    while (s[n]) ++n;
-    return n;
+	size_t	i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
 }
