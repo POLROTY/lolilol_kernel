@@ -1,19 +1,34 @@
-ENTRY(start)
+/* 
+ * Linker script for 32-bit freestanding kernel
+ * Load address: 1 MiB (0x00100000)
+ */
+
+ENTRY(start)  /* Kernel entry point symbol */
 
 SECTIONS
 {
-    .  = 1M;                  /* Load kernel at 0x0010 0000 */
+    /* Start loading the kernel at 1 MiB in memory */
+    . = 1M;
 
-    .text  ALIGN(4K) : {
-        *(.multiboot)
-        *(.text*)
+    /* Text/code section (aligned to 4 KiB) */
+    .text ALIGN(4K) : {
+        *(.multiboot)   /* Multiboot header must come first */
+        *(.text*)       /* All code sections */
     }
 
-    .rodata ALIGN(4K) : { *(.rodata*) }
-    .data   ALIGN(4K) : { *(.data*)    }
+    /* Read-only data (constants, strings) */
+    .rodata ALIGN(4K) : {
+        *(.rodata*)     /* All read-only data */
+    }
 
-    .bss    ALIGN(4K) : {
-        *(COMMON)
-        *(.bss*)
+    /* Writable data */
+    .data ALIGN(4K) : {
+        *(.data*)       /* Initialized global/static variables */
+    }
+
+    /* Uninitialized data (zeroed at runtime) */
+    .bss ALIGN(4K) : {
+        *(COMMON)       /* Common symbols */
+        *(.bss*)        /* Uninitialized global/static variables */
     }
 }

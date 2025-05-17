@@ -1,1 +1,0 @@
-# lolilol_kernel
